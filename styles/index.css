@@ -1,0 +1,38 @@
+/* ======================
+  1 Базовые настройки
+========================= */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #fff;
+
+}
+
+/* сюда потом добавить input и вроде textarea - если они шрифт не наследуют */
+button {
+    font-family: inherit;
+    font-weight: 400;
+}
+
+/* ======================
+  2 Контейнер (ограничение ширины и отступы)
+========================= */
+.container {
+    padding: 0 15px;
+    margin: 0 auto;
+    max-width: 1150px;
+}
+
+/* ====================== */
+.blog {
+    padding-top: 102px;
+}
+
+.blog-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
