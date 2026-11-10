@@ -66,7 +66,7 @@ input {
   outline: none;
 }
 
-.blog__publication-btn {
+.blog__newpost-btn {
   display: block;
   /* пока здесь задаю размеры - если сделаю колонки то может быть width: 100% сделаю внутри их */
   width: 500px;
@@ -86,12 +86,12 @@ input {
 }
 
 /* эффект кнопки при наведении */
-.blog__publication-btn:hover {
+.blog__newpost-btn:hover {
   background-color: #2a7be6;
 }
 
 /* эффект кнопки при нажатии */
-.blog__publication-btn:active {
+.blog__newpost-btn:active {
   background-color: #1b63c4; /* Еще темнее, чем при hover */
   transform: scale(0.98); /* Сжимаем кнопку на 2%, создавая эффект глубины */
 }
