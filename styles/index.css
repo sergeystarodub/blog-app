@@ -2,37 +2,67 @@
   1 Базовые настройки
 ========================= */
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: "Inter", sans-serif;
-    background: #fff;
-
+  font-family: "Inter", sans-serif;
+  background: #fff;
 }
 
 /* сюда потом добавить input и вроде textarea - если они шрифт не наследуют */
-button {
-    font-family: inherit;
-    font-weight: 400;
+button,
+input {
+  font-family: inherit;
+  font-weight: 400;
 }
 
 /* ======================
   2 Контейнер (ограничение ширины и отступы)
 ========================= */
 .container {
-    padding: 0 15px;
-    margin: 0 auto;
-    max-width: 1150px;
+  padding: 0 15px;
+  margin: 0 auto;
+  max-width: 1150px;
 }
 
 /* ====================== */
 .blog {
-    padding-top: 102px;
+  padding-top: 102px;
+}
+
+.blog__title {
+  margin-bottom: 60px;
+  font-size: 40px;
+  font-weight: 700;
+  color: #000;
 }
 
 .blog-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
+
+.blog__title-input {
+  display: block;
+  padding-left: 20px;
+  padding-right: 20px;
+  /* пока здесь задаю размеры - если сделаю колонки то может быть width: 100% сделаю внутри их */
+  width: 500px;
+  height: 60px;
+  font-size: 32px;
+  line-height: 39px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid #000;
+  color: #000;
+}
+
+.blog__title-input::placeholder {
+  color: #979797;
+}
+
+.blog__title-input:focus {
+  outline: none;
+}
+
