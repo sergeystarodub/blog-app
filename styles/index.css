@@ -66,3 +66,36 @@ input {
   outline: none;
 }
 
+.blog__publication-btn {
+  display: block;
+  /* пока здесь задаю размеры - если сделаю колонки то может быть width: 100% сделаю внутри их */
+  width: 500px;
+  padding: 9px 144px 12px 126px;
+  border: none;
+  text-align: center;
+  font-size: 32px;
+  line-height: 39px;
+  background-color: #0094ff;
+  color: #fff;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+  /* чтобы при нажатии на планшете и телефоне не подсвечивалось синим */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* эффект кнопки при наведении */
+.blog__publication-btn:hover {
+  background-color: #2a7be6;
+}
+
+/* эффект кнопки при нажатии */
+.blog__publication-btn:active {
+  background-color: #1b63c4; /* Еще темнее, чем при hover */
+  transform: scale(0.98); /* Сжимаем кнопку на 2%, создавая эффект глубины */
+}
+
+/* после того как сверстаю все может быть сделать для элементов focus-visible здесь */
+
+
