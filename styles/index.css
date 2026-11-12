@@ -23,33 +23,56 @@ input {
 .container {
   padding: 0 15px;
   margin: 0 auto;
-  max-width: 1150px;
+  max-width: 1130px;
 }
 
 /* ====================== */
 .blog {
-  padding-top: 102px;
+  padding: 102px 0 102px;
+}
+
+.blog__row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.blog__col {
+  width: calc(50% - 50px);
+}
+
+.blog-item {
+  width: 100%;
 }
 
 .blog__title {
-  margin-bottom: 60px;
-  font-size: 40px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 45px;
+  line-height: 53px;
   font-weight: 700;
   color: #000;
 }
 
-.blog-wrapper {
+.blog-item__title {
+  margin-bottom: 60px;
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 700;
+  color: #000;
+}
+
+.blog-item__wrapper {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-.blog__title-input {
+.blog-item__title-input {
   display: block;
   padding-left: 20px;
   padding-right: 20px;
   /* пока здесь задаю размеры - если сделаю колонки то может быть width: 100% сделаю внутри их */
-  width: 500px;
+  /* width: 500px; */
   height: 60px;
   font-size: 32px;
   line-height: 39px;
@@ -58,18 +81,18 @@ input {
   color: #000;
 }
 
-.blog__title-input::placeholder {
+.blog-item__title-input::placeholder {
   color: #979797;
 }
 
-.blog__title-input:focus {
+.blog-item__title-input:focus {
   outline: none;
 }
 
-.blog__newpost-btn {
+.blog-item__newpost-btn {
   display: block;
   /* пока здесь задаю размеры - если сделаю колонки то может быть width: 100% сделаю внутри их */
-  width: 500px;
+  /* width: 500px; */
   padding: 9px 144px 12px 126px;
   border: none;
   text-align: center;
@@ -86,16 +109,46 @@ input {
 }
 
 /* эффект кнопки при наведении */
-.blog__newpost-btn:hover {
+.blog-item__newpost-btn:hover {
   background-color: #2a7be6;
 }
 
 /* эффект кнопки при нажатии */
-.blog__newpost-btn:active {
+.blog-item__newpost-btn:active {
   background-color: #1b63c4; /* Еще темнее, чем при hover */
   transform: scale(0.98); /* Сжимаем кнопку на 2%, создавая эффект глубины */
 }
 
 /* после того как сверстаю все может быть сделать для элементов focus-visible здесь */
+
+.blog-item__title_offset {
+  margin-bottom: 50px;
+}
+
+/* Адаптив */
+
+@media (max-width: 1199px) {
+  .container {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+
+  /* .container {
+
+  } */
+
+  .blog__row {
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  .blog__col {
+    width: 100%;
+  }
+
+
+}
 
 
