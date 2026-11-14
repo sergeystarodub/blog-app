@@ -1,7 +1,11 @@
-let post = '';
+let post = {
+    title: '',
+    text: '',
+};
 
-const titleInputNode = document.querySelector('.js-post-title-input');
-const newPostBtnNode = document.querySelector('.js-newpost-btn');
+const postTitleInputNode = document.querySelector('.js-post-title-input');
+const postTextInputNode = document.querySelector('.js-post-text-input');
+const newPostBtnNode = document.querySelector('.js-new-post-btn');
 const postsNode = document.querySelector('.js-posts');
 
 newPostBtnNode.addEventListener('click', function() {
@@ -14,15 +18,32 @@ newPostBtnNode.addEventListener('click', function() {
 });
 
 function getPostFromUser() {
-    const post = titleInputNode.value;
+    const title = postTitleInputNode.value;
+    const text = postTextInputNode.value;
 
-    return post;
+    return {
+        title: title,
+        text: text
+    };
 }
 
 function setPost(newPost) {
     post = newPost;
 }
 
+function getPost() {
+    return post;
+}
+
 function renderPost() {
-    postsNode.innerText = post;
+    const post = getPost();
+
+    const postHtml = `
+        <div class='post'>
+            <p class='post__title'>${post.title}</p>
+            <p class='post__text'>${post.text}</p>
+        </div>
+    `;
+
+    postsNode.innerHTML = postHtml;
 }

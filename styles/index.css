@@ -105,9 +105,7 @@ textarea {
   outline: none;
 }
 
-
-
-.blog-item__newpost-btn {
+.blog-item__new-post-btn {
   display: block;
   /* пока здесь задаю размеры - если сделаю колонки то может быть width: 100% сделаю внутри их */
   /* width: 500px; */
@@ -127,12 +125,12 @@ textarea {
 }
 
 /* эффект кнопки при наведении */
-.blog-item__newpost-btn:hover {
+.blog-item__new-post-btn:hover {
   background-color: #2a7be6;
 }
 
 /* эффект кнопки при нажатии */
-.blog-item__newpost-btn:active {
+.blog-item__new-post-btn:active {
   background-color: #1b63c4; /* Еще темнее, чем при hover */
   transform: scale(0.98); /* Сжимаем кнопку на 2%, создавая эффект глубины */
 }
@@ -143,11 +141,34 @@ textarea {
   margin-bottom: 50px;
 }
 
+
+/* пока если вводить длинный текст в полях ввода - он вылазит за границы и пишется в одну строку-не переностися - пофиксить */
 .posts {
+  /* тут может быть когда будут выводится посты сделать через флексбокс и gap 50px */
   font-size: 32px;
   line-height: 39px;
   font-weight: 400;
   color: #979797;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.post__title {
+  font-size: 32px;
+  line-height: 39px;
+  font-weight: 700;
+  color: #000;
+}
+
+.post__text {
+  font-size: 25px;
+  line-height: 30px;
+  font-weight: 400;
+  color: #000;
 }
 
 /* Адаптив */
