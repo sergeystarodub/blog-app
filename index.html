@@ -25,11 +25,20 @@
               <h2 class="blog-item__title">Новый пост</h2>
               <div class="blog-item__wrapper">
                 <input
-                  class="js-title-input blog-item__title-input"
+                  class="js-post-title-input blog-item__post-title-input"
                   type="text"
                   placeholder="Заголовок"
                 />
-                <button class="js-newpost-btn blog-item__newpost-btn" type="button">
+                <textarea
+                  class="js-post-text-input blog-item__post-text-input"
+                  name="text-post"
+                  id="message-post"
+                  placeholder="Напиши пост"
+                ></textarea>
+                <button
+                  class="js-newpost-btn blog-item__newpost-btn"
+                  type="button"
+                >
                   Опубликовать
                 </button>
               </div>
@@ -38,10 +47,7 @@
           <div class="blog__col">
             <div class="blog-item">
               <h2 class="blog-item__title blog-item__title_offset">Лента</h2>
-              <div class="js-posts posts">
-                Лента пуста...
-              </div>
-
+              <div class="js-posts posts">Тут пока пусто...</div>
             </div>
           </div>
         </div>

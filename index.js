@@ -1,6 +1,6 @@
 let post = '';
 
-const titleInputNode = document.querySelector('.js-title-input');
+const titleInputNode = document.querySelector('.js-post-title-input');
 const newPostBtnNode = document.querySelector('.js-newpost-btn');
 const postsNode = document.querySelector('.js-posts');
 
