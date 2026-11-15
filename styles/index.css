@@ -155,6 +155,10 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  /* Чтобы сохранить абзацы и переносы */
+  white-space: pre-wrap;
+  /* Чтобы текст принудительно переносился на новую строку */
+  overflow-wrap: break-word;
 }
 
 .post__title {
@@ -162,6 +166,9 @@ textarea {
   line-height: 39px;
   font-weight: 700;
   color: #000;
+  /* можно и тут пока закоментил */
+  /* white-space: pre-wrap;
+  overflow-wrap: break-word; */
 }
 
 .post__text {
@@ -169,6 +176,9 @@ textarea {
   line-height: 30px;
   font-weight: 400;
   color: #000;
+  /* можно и тут пока закоментил */
+  /* white-space: pre-wrap;
+  overflow-wrap: break-word; */
 }
 
 /* Адаптив */
