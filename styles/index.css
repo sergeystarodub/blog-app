@@ -141,7 +141,6 @@ textarea {
   margin-bottom: 50px;
 }
 
-
 /* пока если вводить длинный текст в полях ввода - он вылазит за границы и пишется в одну строку-не переностися - пофиксить - пофиксил */
 .posts {
   display: flex;
@@ -181,6 +180,13 @@ textarea {
   /* можно и тут пока закоментил */
   /* white-space: pre-wrap;
   overflow-wrap: break-word; */
+}
+
+.post__date {
+  font-size: 25px;
+  line-height: 30px;
+  font-weight: 400;
+  color: #0094ff;
 }
 
 /* Адаптив */
