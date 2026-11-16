@@ -10,7 +10,8 @@ newPostBtnNode.addEventListener('click', function() {
 
     addPost(postFromUser);
 
-    renderPosts();
+    //renderPosts();
+    checkEmptyInputRenderPosts();
 
 });
 
@@ -73,5 +74,16 @@ function renderPosts() {
     
 
     postsNode.innerHTML = postsHtml;
+}
+
+// функция пока работает не так как надо-она не выводит сразу пустые поля но потом когда поля заполнены выводит все что было до этого введенно так как сохранило все в структуре данных - подумать как их обнулить - пофиксить
+function checkEmptyInputRenderPosts() {
+    const posts = getPosts();
+    
+    posts.forEach(post => {
+        if (post.title !== '' && post.text !== '') {
+            renderPosts();
+        }
+    });
 }
 
