@@ -1,4 +1,6 @@
 const posts = [];
+let titleFlag = false;
+let textFlag = false;
 
 const postTitleInputNode = document.querySelector('.js-post-title-input');
 const postTextInputNode = document.querySelector('.js-post-text-input');
@@ -8,7 +10,8 @@ const postsNode = document.querySelector('.js-posts');
 newPostBtnNode.addEventListener('click', function() {
     const postFromUser = getPostFromUser();
 
-    addPost(postFromUser);
+    inputValidationAddPost(titleFlag, textFlag, postFromUser);
+    //addPost(postFromUser);
 
     renderPosts();
     //checkEmptyInputRenderPosts();
@@ -16,7 +19,7 @@ newPostBtnNode.addEventListener('click', function() {
 });
 
 postTitleInputNode.addEventListener('input', function() {
-    let titleFlag = permissionDisplayMessage(postTitleInputNode);
+    titleFlag = permissionDisplayMessage(postTitleInputNode);
     // проверка - потом удалить
     console.log('titleFlag ' + titleFlag);
 
@@ -37,6 +40,10 @@ postTitleInputNode.addEventListener('input', function() {
     
     // проверка - потом удалить
     console.log(currentFlag); */
+});
+
+postTextInputNode.addEventListener('input', function() {
+    textFlag = permissionDisplayMessage(postTextInputNode);
 });
 
 function getPostFromUser() {
@@ -110,14 +117,23 @@ function permissionDisplayMessage(postInputNode) {
     console.log(maxLength);
     // проверка можно ли выводить сообщение - если длина сообщения больше чем заданная величина или ноль то нельзя выводить сообщение
     if (currentLength > maxLength || currentLength === 0) {
+        // флажок означает что вывод запрещен - заголовок/пост либо не введен(ноль символов) либо превышает лимит символов
         currentFlag = false;
     } else {
+        // флажок означает что вывод разрешен
         currentFlag = true;
     }
     
     // проверка - потом удалить
     console.log(currentFlag);
     return currentFlag;
+}
+
+// функция валидности сообщения - корректно для вывода или нет
+function inputValidationAddPost(titleFlag, textFlag, postUser) {
+    if (!(titleFlag === false || textFlag === false)) {
+        addPost(postUser);
+    }
 }
 
 // функция пока работает не так как надо-она не выводит сразу пустые поля но потом когда поля заполнены выводит все что было до этого введенно так как сохранило все в структуре данных - подумать как их обнулить - пофиксить
