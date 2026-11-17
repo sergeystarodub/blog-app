@@ -10,9 +10,33 @@ newPostBtnNode.addEventListener('click', function() {
 
     addPost(postFromUser);
 
-    //renderPosts();
-    checkEmptyInputRenderPosts();
+    renderPosts();
+    //checkEmptyInputRenderPosts();
 
+});
+
+postTitleInputNode.addEventListener('input', function() {
+    let titleFlag = permissionDisplayMessage(postTitleInputNode);
+    // проверка - потом удалить
+    console.log('titleFlag ' + titleFlag);
+
+
+    // если все заработает это удалить
+    /* let currentFlag = false;
+    const currentLength = postTitleInputNode.value.length;
+    const maxLength = parseInt(postTitleInputNode.dataset.maxLength);
+    // проверка потом удалить
+    console.log(currentLength);
+    console.log(maxLength);
+    // проверка можно ли выводить сообщение - если длина сообщения больше чем заданная величина или ноль то нельзя выводить сообщение
+    if (currentLength > maxLength || currentLength === 0) {
+        currentFlag = false;
+    } else {
+        currentFlag = true;
+    }
+    
+    // проверка - потом удалить
+    console.log(currentFlag); */
 });
 
 function getPostFromUser() {
@@ -76,8 +100,29 @@ function renderPosts() {
     postsNode.innerHTML = postsHtml;
 }
 
+// функция разрешения на вывод сообщения
+function permissionDisplayMessage(postInputNode) {
+    let currentFlag = false;
+    const currentLength = postInputNode.value.length;
+    const maxLength = parseInt(postInputNode.dataset.maxLength);
+    // проверка потом удалить
+    console.log(currentLength);
+    console.log(maxLength);
+    // проверка можно ли выводить сообщение - если длина сообщения больше чем заданная величина или ноль то нельзя выводить сообщение
+    if (currentLength > maxLength || currentLength === 0) {
+        currentFlag = false;
+    } else {
+        currentFlag = true;
+    }
+    
+    // проверка - потом удалить
+    console.log(currentFlag);
+    return currentFlag;
+}
+
 // функция пока работает не так как надо-она не выводит сразу пустые поля но потом когда поля заполнены выводит все что было до этого введенно так как сохранило все в структуре данных - подумать как их обнулить - пофиксить
-function checkEmptyInputRenderPosts() {
+// потом удалить если не буду использовать
+/* function checkEmptyInputRenderPosts() {
     const posts = getPosts();
     
     posts.forEach(post => {
@@ -85,5 +130,5 @@ function checkEmptyInputRenderPosts() {
             renderPosts();
         }
     });
-}
+} */
 
