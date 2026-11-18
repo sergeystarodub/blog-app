@@ -1,6 +1,6 @@
 const posts = [];
-let titleFlag = false;
-let textFlag = false;
+let titleFlag = false;  // флажок для проверки валидности ввода в поле input
+let textFlag = false;   // флажок для проверки валидности ввода в поле textarea
 
 const postTitleInputNode = document.querySelector('.js-post-title-input');
 const postTextInputNode = document.querySelector('.js-post-text-input');
@@ -89,10 +89,15 @@ function getDate() {
 
 function renderPosts() {
     const posts = getPosts();
-
     let postsHtml = '';
+    // когда массив пустой - ввод не валидный - будет выводится строка 'Тут пока пусто...'
+    if (posts.length === 0) {
+        postsHtml = 'Тут пока пусто...';
+    }
+    
 
     posts.forEach(post => {
+        
         postsHtml += `
             <div class='post'>
                 <p class='post__date'>${post.date}</p>
@@ -102,7 +107,6 @@ function renderPosts() {
         `;
     });
 
-    
 
     postsNode.innerHTML = postsHtml;
 }
