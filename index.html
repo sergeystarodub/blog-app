@@ -26,13 +26,15 @@
               <div class="blog-item__wrapper">
                 <input
                   class="js-post-title-input blog-item__post-title-input"
-                  type="text" data-max-length="100"
+                  type="text"
+                  data-max-length="3"
                   placeholder="Заголовок"
                 />
                 <textarea
                   class="js-post-text-input blog-item__post-text-input"
                   name="text-post"
-                  id="message-post" data-max-length="200"
+                  id="message-post"
+                  data-max-length="5"
                   placeholder="Напиши пост"
                 ></textarea>
                 <button
@@ -41,6 +43,8 @@
                 >
                   Опубликовать
                 </button>
+                <p class="js-warning-title-input blog-item__warning-title-input"></p>
+                <p class="js-warning-text-input blog-item__warning-text-input"></p>
               </div>
             </div>
           </div>

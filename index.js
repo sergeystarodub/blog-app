@@ -1,11 +1,16 @@
 const posts = [];
 let titleFlag = false;  // флажок для проверки валидности ввода в поле input
 let textFlag = false;   // флажок для проверки валидности ввода в поле textarea
+const warningTitle = 'Заголовок больше 100 символов';
+const warningText = 'Пост больше 200 символов';
 
 const postTitleInputNode = document.querySelector('.js-post-title-input');
 const postTextInputNode = document.querySelector('.js-post-text-input');
 const newPostBtnNode = document.querySelector('.js-new-post-btn');
 const postsNode = document.querySelector('.js-posts');
+const warningTitleInputNode = document.querySelector('.js-warning-title-input');
+const warningTextInputNode = document.querySelector('.js-warning-text-input');
+
 
 newPostBtnNode.addEventListener('click', function() {
     const postFromUser = getPostFromUser();
@@ -14,36 +19,20 @@ newPostBtnNode.addEventListener('click', function() {
     //addPost(postFromUser);
 
     renderPosts();
-    //checkEmptyInputRenderPosts();
 
 });
 
 postTitleInputNode.addEventListener('input', function() {
     titleFlag = permissionDisplayMessage(postTitleInputNode);
-    // проверка - потом удалить
-    console.log('titleFlag ' + titleFlag);
-
-
-    // если все заработает это удалить
-    /* let currentFlag = false;
-    const currentLength = postTitleInputNode.value.length;
-    const maxLength = parseInt(postTitleInputNode.dataset.maxLength);
-    // проверка потом удалить
-    console.log(currentLength);
-    console.log(maxLength);
-    // проверка можно ли выводить сообщение - если длина сообщения больше чем заданная величина или ноль то нельзя выводить сообщение
-    if (currentLength > maxLength || currentLength === 0) {
-        currentFlag = false;
-    } else {
-        currentFlag = true;
-    }
-    
-    // проверка - потом удалить
-    console.log(currentFlag); */
+    messageTitle = getWarningTitle();
+    getWarning(messageTitle, warningTitleInputNode, postTitleInputNode);
+   
 });
 
 postTextInputNode.addEventListener('input', function() {
     textFlag = permissionDisplayMessage(postTextInputNode);
+    messageText = getWarningText();
+    getWarning(messageText, warningTextInputNode, postTextInputNode);
 });
 
 function getPostFromUser() {
@@ -85,6 +74,14 @@ function getDate() {
 
     return formattedDate;
 
+}
+
+function getWarningTitle() {
+    return warningTitle;
+}
+
+function getWarningText() {
+    return warningText;
 }
 
 function renderPosts() {
@@ -140,15 +137,16 @@ function inputValidationAddPost(titleFlag, textFlag, postUser) {
     }
 }
 
-// функция пока работает не так как надо-она не выводит сразу пустые поля но потом когда поля заполнены выводит все что было до этого введенно так как сохранило все в структуре данных - подумать как их обнулить - пофиксить
-// потом удалить если не буду использовать
-/* function checkEmptyInputRenderPosts() {
-    const posts = getPosts();
-    
-    posts.forEach(post => {
-        if (post.title !== '' && post.text !== '') {
-            renderPosts();
-        }
-    });
-} */
+// нужно доработать функцию - предупреждение выводит но его не убирает когда уменьшаю символы
+// функция вывода предупреждения при переполнении поля ввода
+function getWarning(warningMessage, warningInputNode, postInputNode) {
+    //message = getWarning(warningMessage);
+    const currentLength = postInputNode.value.length;
+    const maxLength = parseInt(postInputNode.dataset.maxLength);
+    if (currentLength > maxLength) {
+        warningInputNode.innerText = warningMessage;
+    }
+}
+
+
 

@@ -135,6 +135,14 @@ textarea {
   transform: scale(0.98); /* Сжимаем кнопку на 2%, создавая эффект глубины */
 }
 
+.blog-item__warning-title-input,
+.blog-item__warning-text-input {
+  font-size: 25px;
+  line-height: 30px;
+  font-weight: 400;
+  color: #f00;
+}
+
 /* после того как сверстаю все может быть сделать для элементов focus-visible здесь */
 
 .blog-item__title_offset {
