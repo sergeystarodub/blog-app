@@ -1,3 +1,8 @@
+//=========================================================
+// программа не публикует пост в ленту если пусто в поле заголовка или поле поста или там и там
+// пост также не публикуется если в заголовке символов больше 100 а в поле поста больше 200
+// при этом выводятся предупреждающие сообщения о превышении лимита количества символов
+//=========================================================
 const posts = [];
 let titleFlag = false;  // флажок для проверки валидности ввода в поле input
 let textFlag = false;   // флажок для проверки валидности ввода в поле textarea
@@ -16,6 +21,8 @@ newPostBtnNode.addEventListener('click', function() {
     const postFromUser = getPostFromUser();
 
     inputValidationAddPost(titleFlag, textFlag, postFromUser);
+
+    //это уже не надо - потом удалить
     //addPost(postFromUser);
 
     renderPosts();
@@ -94,7 +101,6 @@ function renderPosts() {
     
 
     posts.forEach(post => {
-        
         postsHtml += `
             <div class='post'>
                 <p class='post__date'>${post.date}</p>
@@ -113,9 +119,6 @@ function permissionDisplayMessage(postInputNode) {
     let currentFlag = false;
     const currentLength = postInputNode.value.length;
     const maxLength = parseInt(postInputNode.dataset.maxLength);
-    // проверка потом удалить
-    console.log(currentLength);
-    console.log(maxLength);
     // проверка можно ли выводить сообщение - если длина сообщения больше чем заданная величина или ноль то нельзя выводить сообщение
     if (currentLength > maxLength || currentLength === 0) {
         // флажок означает что вывод запрещен - заголовок/пост либо не введен(ноль символов) либо превышает лимит символов
@@ -125,8 +128,6 @@ function permissionDisplayMessage(postInputNode) {
         currentFlag = true;
     }
     
-    // проверка - потом удалить
-    console.log(currentFlag);
     return currentFlag;
 }
 
@@ -137,14 +138,16 @@ function inputValidationAddPost(titleFlag, textFlag, postUser) {
     }
 }
 
-// нужно доработать функцию - предупреждение выводит но его не убирает когда уменьшаю символы
 // функция вывода предупреждения при переполнении поля ввода
 function getWarning(warningMessage, warningInputNode, postInputNode) {
-    //message = getWarning(warningMessage);
+    const emptyWarningMessage = '';
     const currentLength = postInputNode.value.length;
     const maxLength = parseInt(postInputNode.dataset.maxLength);
     if (currentLength > maxLength) {
         warningInputNode.innerText = warningMessage;
+    } else {
+        warningInputNode.innerText = emptyWarningMessage;
+
     }
 }
 
