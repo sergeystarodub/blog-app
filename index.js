@@ -4,8 +4,11 @@
 // при этом выводятся предупреждающие сообщения о превышении лимита количества символов
 //=========================================================
 const posts = [];
-let titleFlag = false;  // флажок для проверки валидности ввода в поле input
-let textFlag = false;   // флажок для проверки валидности ввода в поле textarea
+// потом удалить после рефакторинга
+//let titleFlag = false;  // флажок для проверки валидности ввода в поле input
+//let textFlag = false;   // флажок для проверки валидности ввода в поле textarea
+let titleInitialFlag = false;  // флажок для проверки валидности ввода в поле input
+let textInitialFlag = false;   // флажок для проверки валидности ввода в поле textarea
 const warningTitle = 'Заголовок больше 100 символов';
 const warningText = 'Пост больше 200 символов';
 
@@ -20,6 +23,9 @@ const warningTextInputNode = document.querySelector('.js-warning-text-input');
 newPostBtnNode.addEventListener('click', function() {
     const postFromUser = getPostFromUser();
 
+    let titleFlag = getTitleInitialFlag();
+    let textFlag = getTextInitialFlag();
+
     inputValidationAddPost(titleFlag, textFlag, postFromUser);
 
     //это уже не надо - потом удалить
@@ -30,15 +36,21 @@ newPostBtnNode.addEventListener('click', function() {
 });
 
 postTitleInputNode.addEventListener('input', function() {
-    titleFlag = permissionDisplayMessage(postTitleInputNode);
-    messageTitle = getWarningTitle();
+    // потом удалить после рефакторинга
+    //titleFlag = permissionDisplayMessage(postTitleInputNode);
+    const currentTitleFlag = permissionDisplayMessage(postTitleInputNode);
+    setTitleInitialFlag(currentTitleFlag);
+    const messageTitle = getWarningTitle();
     getWarning(messageTitle, warningTitleInputNode, postTitleInputNode);
    
 });
 
 postTextInputNode.addEventListener('input', function() {
-    textFlag = permissionDisplayMessage(postTextInputNode);
-    messageText = getWarningText();
+    // потом удалить после рефакторинга
+    //textFlag = permissionDisplayMessage(postTextInputNode);
+    const currentTextFlag = permissionDisplayMessage(postTextInputNode);
+    setTextInitialFlag(currentTextFlag);
+    const messageText = getWarningText();
     getWarning(messageText, warningTextInputNode, postTextInputNode);
 });
 
@@ -89,6 +101,22 @@ function getWarningTitle() {
 
 function getWarningText() {
     return warningText;
+}
+
+function getTitleInitialFlag() {
+    return titleInitialFlag;
+}
+
+function getTextInitialFlag() {
+    return textInitialFlag;
+}
+
+function setTitleInitialFlag(currentTitleFlag) {
+    titleInitialFlag = currentTitleFlag;
+}
+
+function setTextInitialFlag(currentTextFlag) {
+    textInitialFlag = currentTextFlag;
 }
 
 function renderPosts() {
