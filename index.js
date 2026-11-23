@@ -4,9 +4,6 @@
 // при этом выводятся предупреждающие сообщения о превышении лимита количества символов
 //=========================================================
 const posts = [];
-// потом удалить после рефакторинга
-//let titleFlag = false;  // флажок для проверки валидности ввода в поле input
-//let textFlag = false;   // флажок для проверки валидности ввода в поле textarea
 let titleInitialFlag = false;  // флажок для проверки валидности ввода в поле input
 let textInitialFlag = false;   // флажок для проверки валидности ввода в поле textarea
 const warningTitle = 'Заголовок больше 100 символов';
@@ -36,8 +33,6 @@ newPostBtnNode.addEventListener('click', function() {
 });
 
 postTitleInputNode.addEventListener('input', function() {
-    // потом удалить после рефакторинга
-    //titleFlag = permissionDisplayMessage(postTitleInputNode);
     const currentTitleFlag = permissionDisplayMessage(postTitleInputNode);
     setTitleInitialFlag(currentTitleFlag);
     const messageTitle = getWarningTitle();
@@ -46,8 +41,6 @@ postTitleInputNode.addEventListener('input', function() {
 });
 
 postTextInputNode.addEventListener('input', function() {
-    // потом удалить после рефакторинга
-    //textFlag = permissionDisplayMessage(postTextInputNode);
     const currentTextFlag = permissionDisplayMessage(postTextInputNode);
     setTextInitialFlag(currentTextFlag);
     const messageText = getWarningText();
