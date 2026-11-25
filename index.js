@@ -6,8 +6,10 @@
 const posts = [];
 let titleInitialFlag = false;  // флажок для проверки валидности ввода в поле input
 let textInitialFlag = false;   // флажок для проверки валидности ввода в поле textarea
-const warningTitle = 'Заголовок больше 100 символов';
-const warningText = 'Пост больше 200 символов';
+//если сделаю это удалю
+//const warningTitle = 'Заголовок больше 100 символов';
+//const warningText = 'Пост больше 200 символов';
+
 
 const postTitleInputNode = document.querySelector('.js-post-title-input');
 const postTextInputNode = document.querySelector('.js-post-text-input');
@@ -15,6 +17,9 @@ const newPostBtnNode = document.querySelector('.js-new-post-btn');
 const postsNode = document.querySelector('.js-posts');
 const warningTitleInputNode = document.querySelector('.js-warning-title-input');
 const warningTextInputNode = document.querySelector('.js-warning-text-input');
+
+const warningTitle = `Заголовок больше ${postTitleInputNode.dataset.maxLength} символов`;
+const warningText = `Пост больше ${postTextInputNode.dataset.maxLength} символов`;
 
 
 newPostBtnNode.addEventListener('click', function() {
@@ -138,7 +143,8 @@ function renderPosts() {
 // функция разрешения на вывод сообщения
 function permissionDisplayMessage(postInputNode) {
     let currentFlag = false;
-    const currentLength = postInputNode.value.length;
+    //trim() нужен чтобы пробел не учитывался как символ
+    const currentLength = postInputNode.value.trim().length;
     const maxLength = parseInt(postInputNode.dataset.maxLength);
     // проверка можно ли выводить сообщение - если длина сообщения больше чем заданная величина или ноль то нельзя выводить сообщение
     if (currentLength > maxLength || currentLength === 0) {
@@ -159,8 +165,9 @@ function inputValidationAddPost(titleFlag, textFlag, postUser) {
     }
 }
 
+//было так раньше - если получится то может быть потом удалить
 // функция вывода предупреждения при переполнении поля ввода
-function getWarning(warningMessage, warningInputNode, postInputNode) {
+/* function getWarning(warningMessage, warningInputNode, postInputNode) {
     const emptyWarningMessage = '';
     const currentLength = postInputNode.value.length;
     const maxLength = parseInt(postInputNode.dataset.maxLength);
@@ -170,7 +177,29 @@ function getWarning(warningMessage, warningInputNode, postInputNode) {
         warningInputNode.innerText = emptyWarningMessage;
 
     }
-}
+} */
 
+
+function getWarning(warningMessage, warningInputNode, postInputNode) {
+    //const emptyWarningMessage = '';
+    //trim() нужен чтобы пробел не учитывался как символ
+    //здесь вместо trim нужно будет может быть peplace - разбираться чтобы не учитывать пробелы между символами
+    const currentLength = postInputNode.value.trim().length;
+    //const currentLength = postInputNode.value.trim();
+
+    //тест - удалить
+    console.log(currentLength);
+    const maxLength = parseInt(postInputNode.dataset.maxLength);
+    if (currentLength > maxLength) {
+        warningInputNode.innerText = warningMessage + ` - лимит превышен на ${currentLength - maxLength} символов`;
+    } else if (currentLength <= maxLength && currentLength > 0) {
+        warningInputNode.innerText = `${maxLength - currentLength} символов осталось до лимита`;
+    }
+    else {
+        //warningInputNode.innerText = emptyWarningMessage;
+        warningInputNode.innerText = 'При пустом поле ввода и при превышении лимита пост не отправляется в ленту';
+
+    }
+}
 
 
