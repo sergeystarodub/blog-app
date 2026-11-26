@@ -53,8 +53,12 @@ postTextInputNode.addEventListener('input', function() {
 });
 
 function getPostFromUser() {
-    const title = postTitleInputNode.value;
-    const text = postTextInputNode.value;
+    // пробую - так было раньше - может если получится - удалить
+    /* const title = postTitleInputNode.value;
+    const text = postTextInputNode.value; */
+    // если перед заголовком и постом вводят лишние пробелы - в ленте они не отображаются - делается с помощью trim()
+    const title = postTitleInputNode.value.trim();
+    const text = postTextInputNode.value.trim();
     const date = getDate();
 
     return {
@@ -182,13 +186,14 @@ function inputValidationAddPost(titleFlag, textFlag, postUser) {
 
 function getWarning(warningMessage, warningInputNode, postInputNode) {
     //const emptyWarningMessage = '';
-    //trim() нужен чтобы пробел не учитывался как символ
-    //здесь вместо trim нужно будет может быть peplace - разбираться чтобы не учитывать пробелы между символами
+    //trim() делает строку без пробелов слева и справа если пробелы были введены - то есть учитываем длину строки без лишних пробелов по бокам
     const currentLength = postInputNode.value.trim().length;
-    //const currentLength = postInputNode.value.trim();
+    //const currentLength = postInputNode.value.length;
+    
 
     //тест - удалить
     console.log(currentLength);
+
     const maxLength = parseInt(postInputNode.dataset.maxLength);
     if (currentLength > maxLength) {
         warningInputNode.innerText = warningMessage + ` - лимит превышен на ${currentLength - maxLength} символов`;
