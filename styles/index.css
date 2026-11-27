@@ -143,6 +143,10 @@ textarea {
   color: #f00;
 }
 
+.blog-item__warning_blue {
+  color: #0094ff;
+}
+
 /* после того как сверстаю все может быть сделать для элементов focus-visible здесь */
 
 .blog-item__title_offset {

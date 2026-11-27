@@ -1,14 +1,14 @@
 //=========================================================
 // программа не публикует пост в ленту если пусто в поле заголовка или поле поста или там и там
-// пост также не публикуется если в заголовке символов больше 100 а в поле поста больше 200
-// при этом выводятся предупреждающие сообщения о превышении лимита количества символов
+// пост также не публикуется если в заголовке символов больше лимита заголовка а в поле поста больше лимита поста
+// при этом выводятся предупреждающие сообщения о превышении лимита количества символов, сколько символов осталось до лимита, на сколько символов лимит превышен
+// пока задал лимиты для заголовка 15 символов, для поста 30 символов, чтобы удобнее было тестировать
+// лимиты сделал как data атрибуты в html
 //=========================================================
 const posts = [];
 let titleInitialFlag = false;  // флажок для проверки валидности ввода в поле input
 let textInitialFlag = false;   // флажок для проверки валидности ввода в поле textarea
-//если сделаю это удалю
-//const warningTitle = 'Заголовок больше 100 символов';
-//const warningText = 'Пост больше 200 символов';
+
 
 
 const postTitleInputNode = document.querySelector('.js-post-title-input');
@@ -53,7 +53,7 @@ postTextInputNode.addEventListener('input', function() {
 });
 
 function getPostFromUser() {
-    // пробую - так было раньше - может если получится - удалить
+    // пробую - так было раньше 
     /* const title = postTitleInputNode.value;
     const text = postTextInputNode.value; */
     // если перед заголовком и постом вводят лишние пробелы - в ленте они не отображаются - делается с помощью trim()
@@ -147,7 +147,7 @@ function renderPosts() {
 // функция разрешения на вывод сообщения
 function permissionDisplayMessage(postInputNode) {
     let currentFlag = false;
-    //trim() нужен чтобы пробел не учитывался как символ
+    //trim() нужен чтобы пробел не учитывался как символ - если ввели только пробел
     const currentLength = postInputNode.value.trim().length;
     const maxLength = parseInt(postInputNode.dataset.maxLength);
     // проверка можно ли выводить сообщение - если длина сообщения больше чем заданная величина или ноль то нельзя выводить сообщение
@@ -189,20 +189,20 @@ function getWarning(warningMessage, warningInputNode, postInputNode) {
     //trim() делает строку без пробелов слева и справа если пробелы были введены - то есть учитываем длину строки без лишних пробелов по бокам
     const currentLength = postInputNode.value.trim().length;
     //const currentLength = postInputNode.value.length;
-    
-
-    //тест - удалить
-    console.log(currentLength);
 
     const maxLength = parseInt(postInputNode.dataset.maxLength);
     if (currentLength > maxLength) {
         warningInputNode.innerText = warningMessage + ` - лимит превышен на ${currentLength - maxLength} символов`;
+        warningInputNode.classList.remove('blog-item__warning_blue');
+
     } else if (currentLength <= maxLength && currentLength > 0) {
         warningInputNode.innerText = `${maxLength - currentLength} символов осталось до лимита`;
+        warningInputNode.classList.add('blog-item__warning_blue');
     }
     else {
         //warningInputNode.innerText = emptyWarningMessage;
         warningInputNode.innerText = 'При пустом поле ввода и при превышении лимита пост не отправляется в ленту';
+        warningInputNode.classList.remove('blog-item__warning_blue');
 
     }
 }
